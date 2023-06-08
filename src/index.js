@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import { SanityDataContextProvider } from "./context/dataContext"
 
 //store
 import { Provider } from 'react-redux';
@@ -11,12 +12,14 @@ import Store from './store'
 
 ReactDOM.render(
   <React.Fragment>
-     {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
-     <BrowserRouter >
-        <Provider store={Store}>
-            <App />
-        </Provider>
-      </BrowserRouter>
+    {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+    <BrowserRouter >
+      <Provider store={Store}>
+        <SanityDataContextProvider>
+          <App />
+        </SanityDataContextProvider>
+      </Provider>
+    </BrowserRouter>
   </React.Fragment>,
   document.getElementById('root')
 );

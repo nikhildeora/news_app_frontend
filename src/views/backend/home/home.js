@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
 import { Container, Col, Row, Nav, Tab } from 'react-bootstrap';
@@ -61,6 +61,7 @@ import tvthrillers5 from '../../../assets/images/tvthrillers/05.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from 'swiper';
 import 'swiper/swiper-bundle.css';
+import { sanityDataContext } from '../../../context/dataContext';
 SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);
 
 const gsapAnimate = {
@@ -152,6 +153,8 @@ const Homepage = () => {
 	const [toggler1, setToggler1] = useState(false);
 	const [toggler2, setToggler2] = useState(false);
 	const [toggler3, setToggler3] = useState(false);
+    const {allNewsData} = useContext(sanityDataContext);
+	console.log(allNewsData);
 
 	const animationInit = () => {
 		if (document.querySelector('.swiper-container .swiper-slide-active') !== null) {
@@ -243,7 +246,9 @@ const Homepage = () => {
 					id="home-slider"
 					className="slider m-0 p-0"
 				>
-					<SwiperSlide className="slide slick-bg s-bg-1">
+					
+					{allNewsData.length>0 && allNewsData?.map((newsData,i)=>{
+						return <SwiperSlide key={i} className="slide slick-bg s-bg-1">
 						<Container fluid className="position-relative h-100">
 							<div className="slider-inner h-100">
 								<Row className="align-items-center  iq-ltr-direction h-100 ">
@@ -262,19 +267,15 @@ const Homepage = () => {
 											data-iq-gsap="onStart"
 											data-iq-position-x="-200"
 										>
-											"Surprised That...": Sharad Pawar On PM Modi's Karnataka Campaigning
+											{newsData.newsTitle}
 										</h1>
 										<div className="d-flex flex-wrap align-items-center">
 											<p data-iq-gsap="onStart" data-iq-position-y="80" data-iq-delay="0.5">
-												<strong>Mumbai: </strong>Nationalist Congress Party (NCP) president
-												Sharad Pawar has said he is surprised that Prime Minister Narendra Modi
-												has given "religious" slogans during election campaigning in Karnataka,
-												which votes on May 10. When one takes up a religion or religious issue
-												in an election, it creates a different type of environment and it is not
-												a good thing, Mr Pawar told a regional news channel.
+												{newsData.newsShortDescription}
 											</p>
 										</div>
 										<div
+										   style={{position:"relative",bottom:"24px"}}
 											className="trending-list"
 											data-iq-gsap="onStart"
 											data-iq-position-y="80"
@@ -338,6 +339,8 @@ const Homepage = () => {
 							</div>
 						</Container>
 					</SwiperSlide>
+					})}
+
 				</Swiper>
 			</section>
 			<div className="main-content">
