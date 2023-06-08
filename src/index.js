@@ -11,7 +11,8 @@ import Store from './store'
 
 ReactDOM.render(
   <React.Fragment>
-     <BrowserRouter basename={process.env.PUBLIC_URL}>
+     {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+     <BrowserRouter >
         <Provider store={Store}>
             <App />
         </Provider>
