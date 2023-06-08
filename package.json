@@ -1,5 +1,5 @@
 {
-  "name": "code-react",
+  "name": "news",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,6 +46,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "next/core-web-vitals",
       "react-app",
       "react-app/jest"
     ]
@@ -63,5 +64,9 @@
   "devDependencies": {
     "vanillajs-datepicker": "^1.1.4",
     "video.js": "^8.3.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/nikhildeora/news_app_frontend.git",
+  "author": "nikhildeora <fitnexy@gmail.com>",
+  "license": "MIT"
 }
