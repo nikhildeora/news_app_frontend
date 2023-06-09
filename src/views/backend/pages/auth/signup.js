@@ -7,6 +7,8 @@ import { Link,useHistory } from 'react-router-dom'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {rtlModeAction, getRtlMode} from '../../../../store/mode/rtlmode'
+import { useContext } from 'react';
+import { sanityDataContext } from '../../../../context/dataContext';
 
 
 const mapStateToProps = (state) => {
@@ -28,6 +30,11 @@ const SignUp = (props) => {
 
     let history = useHistory()
     const [show, setShow] = useState(false);
+    const {signInWithGoogleFun} = useContext(sanityDataContext);
+
+    const signupwithgoogle = () => {
+        signInWithGoogleFun();
+    }
 
     useEffect(() => {
 const rtlMode = sessionStorage.getItem('rtl-mode');
@@ -116,7 +123,10 @@ const rtlMode = sessionStorage.getItem('rtl-mode');
                                             <Button onClick={() => history.push("/")} className="btn btn-hover btn-primary1 my-2">Sign Up</Button>                              
                                         </Form>
                                     </div>
-                                </div>    
+                                </div>   
+                                <div>
+                                    <button onClick={signupwithgoogle}>Sign up with Google</button>
+                                </div> 
                                 <div className="mt-3">
                                     <div className="d-flex justify-content-center links">
                                         Already have an account? 
