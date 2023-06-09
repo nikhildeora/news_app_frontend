@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Navbar, Dropdown, Form, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Card from '../../../../components/Card';
@@ -12,8 +12,11 @@ import thumb1 from '../../../../assets/images/notify/thumb-1.jpg';
 import thumb2 from '../../../../assets/images/notify/thumb-2.jpg';
 import thumb3 from '../../../../assets/images/notify/thumb-3.jpg';
 import user from '../../../../assets/images/user/user.jpg';
+import { sanityDataContext } from '../../../../context/dataContext';
 
 const HeaderStyle1 = (props) => {
+  const {allNewsCategories} = useContext(sanityDataContext);
+
 	return (
 		<>
 			<header id="main-header">
@@ -161,6 +164,11 @@ const HeaderStyle1 = (props) => {
 														<li className="menu-item">
 															<Link to="/blog-details">Blog details</Link>
 														</li>
+                                                        {allNewsCategories.length>0 && allNewsCategories?.map((catagory,i)=>{
+															return <li key={i} className="menu-item">
+                                                                <Link to="/show-category">{catagory.catagoryName}</Link>
+															</li>
+														})}
 													</ul>
 												</li>
 												<li className="menu-item">
