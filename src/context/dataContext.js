@@ -2,17 +2,22 @@ import {createContext,useEffect,useState} from "react";
 import {sanityClient} from "../sanityclient"
 import {auth} from "../firebase";
 import {GoogleAuthProvider,signInWithPopup} from "firebase/auth";
+import { useHistory } from 'react-router-dom';
 
 export const sanityDataContext = createContext();
 
 export const SanityDataContextProvider = ({children}) => {
     const [allNewsData, setAllNewsData] = useState([]);
     const [allNewsCategories, setAllNewsCategories] = useState([]);
+    const history = useHistory();
+    
 
     const signInWithGoogleFun = () => {
        const provider = new GoogleAuthProvider();
-       return signInWithPopup(auth,provider)
-       .then((res)=>console.log(res))
+       signInWithPopup(auth,provider)
+       .then((res)=>{
+        console.log(res);
+        }).then(()=>history.push("/"))
        .catch((err)=>console.log(err))
     }
     
