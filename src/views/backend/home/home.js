@@ -9,6 +9,7 @@ import { TbCloudDownload, TbPlayerPlay } from 'react-icons/tb';
 import logo from '../../../assets/images/logo.png';
 import icon from '../../../assets/video/trailer.mp4';
 
+
 // favorite img
 import fav1 from '../../../assets/images/favorite/01.jpg';
 import fav2 from '../../../assets/images/favorite/02.jpg';
@@ -154,7 +155,6 @@ const Homepage = () => {
 	const [toggler2, setToggler2] = useState(false);
 	const [toggler3, setToggler3] = useState(false);
     const {allNewsData} = useContext(sanityDataContext);
-	console.log(allNewsData);
 
 	const animationInit = () => {
 		if (document.querySelector('.swiper-container .swiper-slide-active') !== null) {
@@ -248,7 +248,12 @@ const Homepage = () => {
 				>
 					
 					{allNewsData.length>0 && allNewsData?.map((newsData,i)=>{
-						return <SwiperSlide key={i} className="slide slick-bg s-bg-1">
+						return <SwiperSlide style={{
+							backgroundImage:
+								'url(' +
+								 newsData.poster +
+								')',
+						}} key={i} className="slide slick-bg s-bg-1">
 						<Container fluid className="position-relative h-100">
 							<div className="slider-inner h-100">
 								<Row className="align-items-center  iq-ltr-direction h-100 ">
